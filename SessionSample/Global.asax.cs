@@ -17,5 +17,17 @@ namespace SessionSample
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        void Session_Start(object sender, EventArgs e)
+        {
+            // Create Cookie
+            var cookie = new HttpCookie("SampleTrackingCookie") {["DoNotTrack"] = "true"};
+
+            // Set Cookie TTL, defaults to non-persistent if not set
+            cookie.Expires = DateTime.Now.AddHours(1);
+
+            // Write cookie to client
+            Response.Cookies.Add(cookie);
+        }
     }
 }
