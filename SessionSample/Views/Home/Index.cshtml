@@ -5,8 +5,8 @@
 
 <div class="row alert alert-warning" style="margin: 10%">
     @{
-        var cookie = (Request.Cookies["SampleTrackingCookie"]) ?? new HttpCookie("Dud");
-        if (!cookie["DoNotTrack"].IsNullOrWhiteSpace())
+        var cookie = Request.Cookies["SampleTrackingCookie"];
+        if (cookie != null)
         {
             <div>Do not Track Status: @cookie["DoNotTrack"]</div>
         }
